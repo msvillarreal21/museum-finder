@@ -22,15 +22,15 @@
     <div class="col-12 col-md-4">
     <div class="card">
       <h3 class="card-header text-uppercase">Search By Artist</h3>
-      <form id="user-form" class="card-body">
-        <label class="form-label" for="username">Artist</label>
-        <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+      <form id="artist" class="card-body">
+        <label class="form-label" for="artistname">Artist</label>
+        <input name="artistname" id="artistname" type="text" autofocus="true" class="form-input" />
         <button type="submit" class="btn">Get Artist</button>
       </form>
       </div>
       <div class="card">
         <h3 class="card-header uppercase">Search By Topic</h3>
-        <div class="card-body" id="language-buttons">
+        <div class="card-body" id="option-buttons">
         <button type="button" data="data-language" class="btn">Color</button>
         <button type="button" data="data-language" class="btn">Year</button>
         <button type="button" data="data-language" class="btn">Style</button>
@@ -38,8 +38,9 @@
     </div>
 
     <div class="col-12 col-md-8">
-    <h2 class="subtitle">Showing artwork for: <span id="repo-search-term"></span></h2>
-    <div id="repos-container" class="list-group"></div>
+    <h2 class="subtitle">Showing artwork for: <span id="art-search-term"></span></h2>
+    <div id="art-container" class="list-group"></div>
+    <div class="card-body" id="artist-work"></div>
     </div>
   </main>
 <script src="./assets/js/homepage.js"></script>

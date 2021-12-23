@@ -1,17 +1,17 @@
-var repoNameEl = document.querySelector("#repo-name");
-var issueContainerEl = document.querySelector("#issues-container");
-var limitWarningEl = document.querySelector("#limit-warning");
+var artworkNameEl = document.querySelector("#artist-name");
+// var issueContainerEl = document.querySelector("#issues-container");
+// var limitWarningEl = document.querySelector("#limit-warning");
 
-var getRepoName = function(repoName) {
+var getArtistWork = function(artistName) {
     //grab repo name from url query string
     var queryString = document.location.search;
-    var repoName = queryString.split("=")[1];
+    var artistName = queryString.split("=")[1];
     
-    if(repoName) {
+    if(artistName) {
         //display repo name on the page
-        repoName.textContent = repoName;
+        artistName.textContent = artistName;
 
-        getRepoIssues(repoName);
+      
     } else {
         //if no repo was given, redirect to homepage
         document.location.replace("./index.html");
@@ -21,7 +21,7 @@ var getRepoName = function(repoName) {
 
 var getRepoIssues = function(repo) {
     // format the github api url
-    var apiUrl = "https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=1";
+    var apiUrl = "https://api.artic.edu/api/v1/artworks/search?q=cats&query[term][is_public_domain]=true";
   
     // make a get request to url
     fetch(apiUrl).then(function(response) {
@@ -43,54 +43,54 @@ var getRepoIssues = function(repo) {
     });
   };
 
-var displayIssues =  function(issues) {
+// var displayIssues =  function(issues) {
 
-    if (issues.length === 0) {
-        issueContainerEl.textContent = "This repo has no open issues!";
-        return;
-    }
-    for (var i = 0; i <issues.length; i++) {
-        //create a link element to take users to the issues on github
-        var issueEl = document.createElement("a");
-        issueEl.classList = "list-item flex-row justify-space-between align-center";
-        issueEl.setAttribute("href", issues[i].html_url);
-        issueEl.setAttribute("target", "_blank");
+//     if (issues.length === 0) {
+//         issueContainerEl.textContent = "This repo has no open issues!";
+//         return;
+//     }
+//     for (var i = 0; i <issues.length; i++) {
+//         //create a link element to take users to the issues on github
+//         var issueEl = document.createElement("a");
+//         issueEl.classList = "list-item flex-row justify-space-between align-center";
+//         issueEl.setAttribute("href", issues[i].html_url);
+//         issueEl.setAttribute("target", "_blank");
 
-        //create span to hold issue title
-        var titleEl = document.createElement("span");
-        titleEl.textContent = issues[i].title;
+//         //create span to hold issue title
+//         var titleEl = document.createElement("span");
+//         titleEl.textContent = issues[i].title;
 
-        //append to container
-        issueEl.appendChild(titleEl);
+//         //append to container
+//         issueEl.appendChild(titleEl);
 
-        //create a type element
-        var typeEl = document.createElement("span");
+//         //create a type element
+//         var typeEl = document.createElement("span");
 
-        //check if issue is an actual issue or a pull request
-        if (issues[i].pull_request) {
-            typeEl.textContent = "(Pull request)";   
-        } else {
-            typeEl.textContent = "(Issue)";
-        }
-        //append to container
-        issueEl.appendChild(typeEl);
+//         //check if issue is an actual issue or a pull request
+//         if (issues[i].pull_request) {
+//             typeEl.textContent = "(Pull request)";   
+//         } else {
+//             typeEl.textContent = "(Issue)";
+//         }
+//         //append to container
+//         issueEl.appendChild(typeEl);
 
-        issueContainerEl.appendChild(issueEl);
-    }
+//         issueContainerEl.appendChild(issueEl);
+//     }
     
-};
+// };
 
-var displayWarning = function(repo) {
-    //add text to warining container
-    limitWarningEl.textContent = "To see more than 30 lissues, visit ";
+// var displayWarning = function(repo) {
+//     //add text to warining container
+//     limitWarningEl.textContent = "To see more than 30 lissues, visit ";
 
-    var linkEl = document.createElement("a");
-    linkEl.textContent = "See More Issues on GitHub.com";
-    linkEl.setAttribute("href", "https://github.com/" + repo + "/issues");
-    linkEl.setAttribute("target", "_blank");
+//     var linkEl = document.createElement("a");
+//     linkEl.textContent = "See More Issues on GitHub.com";
+//     linkEl.setAttribute("href", "https://github.com/" + repo + "/issues");
+//     linkEl.setAttribute("target", "_blank");
 
-    //append to warning container
-    limitWarningEl.appendChild(linkEl);
-};
+//     //append to warning container
+//     limitWarningEl.appendChild(linkEl);
+// };
 
-getRepoName();
+getArtistWork();
